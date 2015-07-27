@@ -79,7 +79,12 @@ function add_header {
     cat .licensifytmp > $goal
 }
 
-goals=$(find $cwd -name *.$ext)
+if [[ $# -eq 0 ]]
+then
+    goals=$(find $cwd -name *.$ext)
+else
+    goals=$*
+fi
 
 for goal in $goals; do
     add_header $goal
