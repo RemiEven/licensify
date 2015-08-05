@@ -3,7 +3,7 @@
 > Bash script inserting license headers to source files
 
 If you have started a project and now want to license it, chances are that you do not want to manually add the header of the license to each file of your project.
-This scripts intends to help you through this task, by recursively adding the headers to all source files of your project (or only to the one you specified).
+This scripts intends to help you through this task, by recursively adding the headers to all source files of your project (or only to the ones you specified).
 
 ### What this script does
 
@@ -41,3 +41,13 @@ Then, you have two choices :
 In this case, the modifiable variable `ext` of the script will be ignored.
 
 You are strongly advised to use a version control system before executing this script inside your project.
+
+##### Verbose mode
+
+Both choices can print the list of affected files, by adding `-v` as the first command line argument:
+
+```bash
+./licensify -v [path_to_file]
+```
+
+> NB: If a file counts less lines than the `offset` parameter inside the script, the header will not be inserted in that particular file.

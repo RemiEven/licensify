@@ -51,6 +51,8 @@ along with {{project_name}}. If not, see <http://www.gnu.org/licenses/>.'
 
 cwd=$(pwd)
 
+verbose=false
+
 function generate_header_content {
 file_name=$1
     echo -e "$license" \
@@ -72,12 +74,22 @@ function add_header {
             echo "$comment_start" >> .licensifytmp
             generate_header_content $file_name
             echo -e "$comment_end\n" >> .licensifytmp
+            if [[ $verbose = true ]]
+            then
+                echo "Added header to $(basename $goal)"
+            fi
         fi
         i=$(expr $i + 1)
         echo "$line" >> .licensifytmp
     done < $goal
     cat .licensifytmp > $goal
 }
+
+if [[ $1 = '-v' ]]
+then
+    verbose=true
+    shift
+fi
 
 if [[ $# -eq 0 ]]
 then
