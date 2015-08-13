@@ -79,7 +79,7 @@ function add_header {
                 echo "Added header to $(basename $goal)"
             fi
         fi
-        i=$(expr $i + 1)
+        i=$(($i + 1))
         echo "$line" >> .licensifytmp
     done < $goal
     cat .licensifytmp > $goal
