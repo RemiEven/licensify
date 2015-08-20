@@ -66,6 +66,11 @@ file_name=$1
 
 function add_header {
     goal=$1
+    if [[ ! -f $goal ]]
+    then
+        echo "Warning : Can not find file \"$goal\""
+        return
+    fi
     file_name=$(basename $goal)
     i=0
     touch .licensifytmp
@@ -76,7 +81,7 @@ function add_header {
             echo -e "$comment_end\n" >> .licensifytmp
             if [[ $verbose = true ]]
             then
-                echo "Added header to $(basename $goal)"
+                echo "Info : Added header to $(basename $goal)"
             fi
         fi
         i=$(($i + 1))
