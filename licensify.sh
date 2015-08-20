@@ -68,7 +68,7 @@ function add_header {
     goal=$1
     file_name=$(basename $goal)
     i=0
-    echo -n '' > .licensifytmp
+    touch .licensifytmp
     while IFS='' read -r line || [[ -n $line ]]; do
         if [[ $i -eq $offset ]]; then
             echo "$comment_start" >> .licensifytmp
@@ -82,7 +82,7 @@ function add_header {
         i=$(($i + 1))
         echo "$line" >> .licensifytmp
     done < $goal
-    cat .licensifytmp > $goal
+    mv .licensifytmp $goal
 }
 
 if [[ $1 = '-v' ]]
@@ -102,5 +102,4 @@ for goal in $goals; do
     add_header $goal
 done
 
-rm .licensifytmp
 IFS=$old_ifs
