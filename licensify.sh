@@ -66,8 +66,7 @@ file_name=$1
 
 function add_header {
     goal=$1
-    if [[ ! -f $goal ]]
-    then
+    if [[ ! -f $goal ]]; then
         echo "Warning : Can not find file \"$goal\""
         return
     fi
@@ -79,8 +78,7 @@ function add_header {
             echo "$comment_start" >> .licensifytmp
             generate_header_content $file_name
             echo -e "$comment_end\n" >> .licensifytmp
-            if [[ $verbose = true ]]
-            then
+            if [[ $verbose = true ]]; then
                 echo "Info : Added header to $(basename $goal)"
             fi
         fi
@@ -90,14 +88,12 @@ function add_header {
     mv .licensifytmp $goal
 }
 
-if [[ $1 = '-v' ]]
-then
+if [[ $1 = '-v' ]]; then
     verbose=true
     shift
 fi
 
-if (( $# == 0 ))
-then
+if (( $# == 0 )); then
     goals=$(find $cwd -name *.$ext)
 else
     goals=$*
