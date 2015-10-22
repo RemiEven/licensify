@@ -75,7 +75,7 @@ function add_header {
     i=0
     touch .licensifytmp
     while IFS='' read -r line || [[ -n $line ]]; do
-        if [[ $i -eq $offset ]]; then
+        if (( $i == $offset )); then
             echo "$comment_start" >> .licensifytmp
             generate_header_content $file_name
             echo -e "$comment_end\n" >> .licensifytmp
@@ -84,7 +84,7 @@ function add_header {
                 echo "Info : Added header to $(basename $goal)"
             fi
         fi
-        i=$(($i + 1))
+        (( i++ ))
         echo "$line" >> .licensifytmp
     done < $goal
     mv .licensifytmp $goal
@@ -96,7 +96,7 @@ then
     shift
 fi
 
-if [[ $# -eq 0 ]]
+if (( $# == 0 ))
 then
     goals=$(find $cwd -name *.$ext)
 else
