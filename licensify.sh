@@ -61,6 +61,7 @@ file_name=$1
     | sed -e "s/{{project_name}}/$project_name/g" \
     | sed -e "s/{{file_name}}/$file_name/g" \
     | sed -e "s/\(.*\)/$comment_middle \1/" \
+    | sed -e "s/[ \t]*$//" \
     >> .licensifytmp
 }
 
