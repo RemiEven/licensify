@@ -95,7 +95,7 @@ if [[ $1 = '-v' ]]; then
 fi
 
 if (( $# == 0 )); then
-    goals=$(find $cwd -name *.$ext)
+    goals=$(find $cwd -name *.$ext -type f)
 else
     goals=$*
 fi
